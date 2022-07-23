@@ -15,20 +15,20 @@ class BrandAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.Retailer)
-class BrandAdmin(admin.ModelAdmin):
+class RetailerAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(models.Store)
-class BrandAdmin(admin.ModelAdmin):
+class StoreAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(models.Product)
-class BrandAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(models.StoreInventory)
-class BrandAdmin(admin.ModelAdmin):
-    pass
+class StoreInventoryAdmin(admin.ModelAdmin):
+    verbose_name_plural = 'Store inventory'
