@@ -1,10 +1,11 @@
 * store
 
 ** Assumptions:
-   - Promotions can be run by either brands or retailers
+   - Promotions are run by a store for any of the products it might have
+   - A store can have multiple offers for the same product
    - A Store is owned by a retailer and can have products from any brand
    - Promotion means discount on the product price i.e. offer
-   - A product has only one offer at a time
+   - Offer can be run
 
 ** Possible Improvements:
    - Create a mixin for created_at and updated_at fields
@@ -14,6 +15,7 @@
    - Use email as username for User model
    - Use slug to filter product listing by retailer and store
    - Use django-filter package for standard filtering on queryset
+   - Allow offers to be run by brands or retailers as well
 
 ** APIs
    - Path prefix: /api/v1

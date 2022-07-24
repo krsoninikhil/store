@@ -31,7 +31,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(models.Offer)
 class OfferAdmin(admin.ModelAdmin):
-    list_select_related = ['product']
+    list_select_related = ['store', 'product']
     list_display = ['amount', 'valid_till']
 
 

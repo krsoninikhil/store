@@ -67,6 +67,7 @@ class StoreInventory(models.Model):
 
 class Offer(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE, related_name='store_offers')
     amount = models.FloatField()
     valid_till = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)

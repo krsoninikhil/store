@@ -1,29 +1,38 @@
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, StringRelatedField
+from rest_framework.serializers import ModelSerializer, SerializerMethodField, StringRelatedField
 
 from inventory import models
-
-
-class StoreSerializer(ModelSerializer):
-    class Meta:
-        model = models.Store
-        fields = '__all__'
 
 
 class OfferSerializer(ModelSerializer):
     class Meta:
         model = models.Offer
-        exclude = ['id']
+        fields = ['amount', 'valid_till']
+
+
+class StoreSerializer(ModelSerializer):
+    retailer = StringRelatedField()
+
+    class Meta:
+        model = models.Store
+        exclude = ['created_at', 'updated_at']
 
 
 class StoreInventorySerializer(ModelSerializer):
-    store = StringRelatedField()
+    store = StoreSerializer()
+    offers = SerializerMethodField()
+
+    def get_offers(self, obj):
+        offers = models.Offer.objects.filter(store=obj.store_id, product=obj.product_id)
+        return OfferSerializer(offers, many=True).data
+
     class Meta:
         model = models.StoreInventory
-        fields = ['store', 'stock']
+        exclude = ['id', 'created_at', 'updated_at', 'product']
 
 
 class ProductSerializer(ModelSerializer):
     inventory = StoreInventorySerializer(many=True, read_only=True, allow_null=True)
+
     def to_representation(self, instance):
         response = super().to_representation(instance)
         return response
