@@ -5,27 +5,24 @@ from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
 from inventory import models, serializers
 
 
-class StoreInventoryView(GenericViewSet, ListModelMixin):
-
-    serializer = serializers.StoreInventorySerializer
-
-    def get_queryset(self, request):
-        qs = StoreInventory.objects.all()
-
-        brand = request.query_params('brand')
-        if brand:
-            qs = qs.filter(product__brand=brand)
-
-        store = request.query_params('store')
-        if store:
-            qs = qs.filter(store=store)
-
-        retailer = request.query_params('retailer')
-        if retailer:
-            qs = qs.filter(store__retailer=retailer)
-
-
-class ProductView(GenericViewSet, RetrieveModelMixin):
+class ProductView(GenericViewSet, RetrieveModelMixin, ListModelMixin):
 
     serializer_class = serializers.ProductSerializer
-    queryset = models.Product.objects.all()
+
+
+    def get_queryset(self):
+        qs = models.Product.objects.all().prefetch_related('inventory')
+
+        brand = self.request.query_params.get('brand')
+        if brand:
+            qs = qs.filter(brand=brand)
+
+        store = self.request.query_params.get('store')
+        if store:
+            qs = qs.filter(inventory__store=store)
+
+        retailer = self.request.query_params.get('retailer')
+        if retailer:
+            qs = qs.filter(inventory__store__retailer=retailer)
+
+        return qs

@@ -5,7 +5,7 @@ from inventory import views
 
 
 router = DefaultRouter(trailing_slash=False)
-router.register('products', views.ProductView)
+router.register('products', views.ProductView, basename='products')
 
 urlpatterns = [
     path('', include(router.urls)),

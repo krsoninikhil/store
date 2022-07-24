@@ -19,5 +19,6 @@
 
 ** APIs
    - Path prefix: /api/v1
-   - List all products: /products?retailer=1&store=2&brand=1
-   - List stores for a product: /products/<product_id>
+   - List all products: GET /inventory/products?retailer=1&store=2&brand=1
+   - List stores for a product: GET /inventory/products/<product_id>
+   - Add a promotion (offer): POST /inventory/offer
