@@ -1,14 +1,13 @@
 from django.shortcuts import render
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
+from rest_framework.mixins import RetrieveModelMixin, ListModelMixin, \
+    CreateModelMixin
 
 from inventory import models, serializers
 
 
 class ProductView(GenericViewSet, RetrieveModelMixin, ListModelMixin):
-
     serializer_class = serializers.ProductSerializer
-
 
     def get_queryset(self):
         qs = models.Product.objects.all().prefetch_related('inventory')
@@ -26,3 +25,9 @@ class ProductView(GenericViewSet, RetrieveModelMixin, ListModelMixin):
             qs = qs.filter(inventory__store__retailer=retailer)
 
         return qs
+
+
+class OfferView(GenericViewSet, CreateModelMixin):
+    serializer_class = serializers.OfferCreateSerializer
+    queryset = models.Offer.objects.all()
+    # permission_classes =

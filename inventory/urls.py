@@ -6,6 +6,7 @@ from inventory import views
 
 router = DefaultRouter(trailing_slash=False)
 router.register('products', views.ProductView, basename='products')
+router.register('offers', views.OfferView, basename='offers')
 
 urlpatterns = [
     path('', include(router.urls)),

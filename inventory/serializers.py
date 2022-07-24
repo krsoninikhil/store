@@ -3,7 +3,7 @@ from rest_framework.serializers import ModelSerializer, SerializerMethodField, S
 from inventory import models
 
 
-class OfferSerializer(ModelSerializer):
+class OfferListSerializer(ModelSerializer):
     class Meta:
         model = models.Offer
         fields = ['amount', 'valid_till']
@@ -23,7 +23,7 @@ class StoreInventorySerializer(ModelSerializer):
 
     def get_offers(self, obj):
         offers = models.Offer.objects.filter(store=obj.store_id, product=obj.product_id)
-        return OfferSerializer(offers, many=True).data
+        return OfferListSerializer(offers, many=True).data
 
     class Meta:
         model = models.StoreInventory
@@ -40,3 +40,9 @@ class ProductSerializer(ModelSerializer):
     class Meta:
         model = models.Product
         exclude = ['created_at']
+
+
+class OfferCreateSerializer(ModelSerializer):
+    class Meta:
+        model = models.Offer
+        exclude = []
