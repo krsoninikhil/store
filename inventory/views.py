@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import RetrieveModelMixin, ListModelMixin, \
     CreateModelMixin
+from rest_framework.permissions import IsAuthenticated
 
 from inventory import models, serializers
 
@@ -30,4 +31,9 @@ class ProductView(GenericViewSet, RetrieveModelMixin, ListModelMixin):
 class OfferView(GenericViewSet, CreateModelMixin):
     serializer_class = serializers.OfferCreateSerializer
     queryset = models.Offer.objects.all()
-    # permission_classes =
+    permission_classes = [IsAuthenticated]
+
+
+class SignUpView(GenericViewSet, CreateModelMixin):
+    serializer_class = serializers.UserSerializer
+    queryset = models.User.objects.all()

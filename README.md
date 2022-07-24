@@ -1,11 +1,12 @@
 * store
 
 ** Assumptions:
+   - Promotion means discount on the product price i.e. offer
    - Promotions are run by a store for any of the products it might have
    - A store can have multiple offers for the same product
-   - A Store is owned by a retailer and can have products from any brand
-   - Promotion means discount on the product price i.e. offer
-   - Offer can be run
+   - A store is owned by a retailer and can have products from any brand
+   - A user can have only one store, i.e. one to one mapping
+   - Offer is create by the owner of the store
 
 ** Possible Improvements:
    - Create a mixin for created_at and updated_at fields

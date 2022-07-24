@@ -30,7 +30,7 @@ class Retailer(models.Model):
 
 class Store(models.Model):
     retailer = models.ForeignKey(Retailer, on_delete=models.CASCADE)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=256)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
