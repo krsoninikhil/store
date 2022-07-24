@@ -1,9 +1,11 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
+from inventory import views
+
 
 router = DefaultRouter(trailing_slash=False)
-# router.register('brands', views.BrandView)
+router.register('products', views.ProductView)
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -21,7 +21,7 @@ class RetailerAdmin(admin.ModelAdmin):
 
 @admin.register(models.Store)
 class StoreAdmin(admin.ModelAdmin):
-    pass
+    list_select_related = ['retailer']
 
 
 @admin.register(models.Product)
@@ -29,6 +29,14 @@ class ProductAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(models.Offer)
+class OfferAdmin(admin.ModelAdmin):
+    list_select_related = ['product']
+    list_display = ['amount', 'valid_till']
+
+
 @admin.register(models.StoreInventory)
 class StoreInventoryAdmin(admin.ModelAdmin):
+    list_select_related = ['product', 'store']
+    list_display = ['product', 'store', 'stock']
     verbose_name_plural = 'Store inventory'
