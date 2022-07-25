@@ -14,7 +14,11 @@ python3 manage.py runserver
 ```
 - You can try out using [this][0] postman collection, to try on local
   env, change collection variable `hostname` to `localhost:8000`
-- CMS link: http://localhost:8000/admin (Test superuser: a@b.com:C94A4PkFmUZqSGE)
+- CMS link: http://localhost:8000/admin or
+  http://store.nikhilsoni.me/admin (Test superuser:
+  `a@b.com:C94A4PkFmUZqSGE`)
+- To deploy changes from `main` branch, merge it to `release`
+  brach. Anything pushed on `release` will be deployed on heroku.
 
 ## Requirements
 - [x] The API to run a promotion should be protected i.e. only a
