@@ -49,7 +49,7 @@ python3 manage.py runserver
    - Use django-filter package for standard filtering on queryset
    - Allow offers to be run by brands or retailers as well
    - Move secret in settings to env, can be done using decouple package
-   - Configure staticfiles on heroku
+   - Move staticfiles to CDN
 
 ## APIs
    - Path prefix: `/api/v1`
