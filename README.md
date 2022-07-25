@@ -50,6 +50,7 @@ python3 manage.py runserver
    - Allow offers to be run by brands or retailers as well
    - Move secret in settings to env, can be done using decouple package
    - Move staticfiles to CDN
+   - Setup SSL certificate on custome domain (requires paid account on heroku)
 
 ## APIs
    - Path prefix: `/api/v1`

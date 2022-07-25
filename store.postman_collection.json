@@ -54,6 +54,10 @@
 						"type": "default"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"a@xe.com\",\n    \"password\": \"123\"\n}"
+				},
 				"url": {
 					"raw": "{{hostname}}/api/v1/auth/token",
 					"host": [
@@ -203,7 +207,7 @@
 	"variable": [
 		{
 			"key": "hostname",
-			"value": "localhost:8000",
+			"value": "store.nikhilsoni.me",
 			"type": "default"
 		},
 		{
