@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField, \
-    StringRelatedField, ValidationError, CharField, EmailField
+    StringRelatedField, ValidationError, CharField, EmailField, HiddenField, CurrentUserDefault
 from rest_framework import serializers
 from django.db.utils import IntegrityError
 
@@ -46,21 +46,23 @@ class ProductSerializer(ModelSerializer):
 
 
 class OfferCreateSerializer(ModelSerializer):
-    store = SerializerMethodField()
+    user = HiddenField(default=CurrentUserDefault())
+
+    def validate_user(self, value):
+        'Validate if current user has a store configured'
+        if not hasattr(value, 'store'):
+            raise ValidationError('User does not own any store')
+        return value
 
     def create(self, validated_data):
-        user =  self.context['request'].user
-        validated_data['store'] = user.store if hasattr(user, 'store') else None
+        validated_data['store'] = validated_data['user'].store
+        validated_data.pop('user')
         return super().create(validated_data)
-
-
-    def get_store(self, obj):
-        user = self.context['request'].user
-        return user.store.id if hasattr(user, 'store') else None
 
     class Meta:
         model = models.Offer
         exclude = []
+        extra_kwargs = {'store': {'required': False}}
 
 
 class UserSerializer(ModelSerializer):
@@ -86,4 +88,4 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = models.User
         fields = ['first_name', 'last_name', 'email', 'password']
-        extra_kwargs = {'email': {'required': True}}
+        extra_kwargs = {'password': {'write_only': True}}
