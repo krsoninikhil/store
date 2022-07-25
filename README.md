@@ -12,10 +12,11 @@ pip install -r requirements.txt
 python3 manage.py migrate
 python3 manage.py runserver
 ```
-- You can try out using [this][0] postman collection
+- You can try out using [this][0] postman collection, to try on local
+  env, change collection variable `hostname` to `localhost:8000`
 - CMS link: http://localhost:8000/admin (Test superuser: a@b.com:C94A4PkFmUZqSGE)
 
-## Requirements:
+## Requirements
 - [x] The API to run a promotion should be protected i.e. only a
   logged-in user should be allowed to access that API. Rest, all other
   APIs are public endpoints
@@ -34,7 +35,7 @@ python3 manage.py runserver
    - Promotion means discount on the product price i.e. offer
    - Promotions are run by a store for any of the products it might have
    - A store can have multiple offers for the same product
-   - A store is owned by a retailer and can have products from any brand
+   - A store belongs to a retailer and can have products from any brand
    - A user can have only one store, i.e. one to one mapping
    - Offer is create by the owner of the store
 
@@ -51,12 +52,12 @@ python3 manage.py runserver
    - Configure staticfiles on heroku
 
 ## APIs
-   - Path prefix: /api/v1
-   - List all products: GET /inventory/products?retailer=1&store=2&brand=1
-   - List stores for a product: GET /inventory/products/<product_id>
-   - Add a promotion / offer: POST /inventory/offers
-   - Singup: POST /inventory/signup
-   - Login: POST /auth/token
+   - Path prefix: `/api/v1`
+   - List all products: `GET /inventory/products?retailer=1&store=2&brand=1`
+   - List stores for a product: `GET /inventory/products/<product_id>`
+   - Add a promotion / offer: `POST /inventory/offers`
+   - Singup: `POST /inventory/signup`
+   - Login: `POST /auth/token`
 
 
 [0]: ./store.postman_collection.json
