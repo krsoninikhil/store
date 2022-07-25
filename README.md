@@ -16,16 +16,21 @@ python3 manage.py runserver
 - CMS link: http://localhost:8000/admin (Test superuser: a@b.com:C94A4PkFmUZqSGE)
 
 ## Requirements:
-- [x] The API to run a promotion should be protected i.e. only a logged-in user should be allowed to access that API. Rest, all other APIs are public endpoints
-- [x] All the code should be well-styled with proper namings. We pay a lot of attention to code-styling.
-- [] Include unit tests
-- [x] Use Git for version control, and host the project in a public Github repository. Share the Github link with us.
-- [] Use Dependency Injection
+- [x] The API to run a promotion should be protected i.e. only a
+  logged-in user should be allowed to access that API. Rest, all other
+  APIs are public endpoints
+- [x] All the code should be well-styled with proper namings. We pay a
+  lot of attention to code-styling.
+- [ ] Include unit tests
+- [x] Use Git for version control, and host the project in a public
+  Github repository. Share the Github link with us.
+- [ ] Use Dependency Injection
 - [x] Implement CICD using Jenkins/Azure DevOps/CircleCI or any other CICD service
 - [x] Host the service in a Public Cloud (Eg AWS or Azure or similar).
-- [x] Write the instructions on how to build and run the application in the readme file in the repository.
+- [x] Write the instructions on how to build and run the application
+  in the readme file in the repository.
 
-## Assumptions:
+## Assumptions
    - Promotion means discount on the product price i.e. offer
    - Promotions are run by a store for any of the products it might have
    - A store can have multiple offers for the same product
@@ -33,7 +38,7 @@ python3 manage.py runserver
    - A user can have only one store, i.e. one to one mapping
    - Offer is create by the owner of the store
 
-## Possible Improvements:
+## Possible Improvements
    - Create a mixin for created_at and updated_at fields
    - Use decimal fields for prices (money) to avoid floating precision issue
    - Allow running promotions on categories, stores or brand level
@@ -54,5 +59,4 @@ python3 manage.py runserver
    - Login: POST /auth/token
 
 
---
 [0]: ./store.postman_collection.json
